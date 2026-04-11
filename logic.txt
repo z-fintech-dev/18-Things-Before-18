@@ -1,0 +1,7 @@
+Project: TruePKR Calculator
+Rules:
+1. Input: Euro Amount
+2. Platform Fee: 2% (Payoneer/Elevate)
+3. Bank Spread: 1.5% (The hidden conversion cost)
+4. FBR Tax (PSEB): 0.25% 
+5. FBR Tax (Non-PSEB): 1.00%
