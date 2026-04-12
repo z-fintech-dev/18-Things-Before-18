@@ -51,3 +51,4 @@ with col2:
     st.success(f"### **Rs. {final_take_home:,.0f}**")
 
 st.warning(f"💡 You lost **Rs. {bank_cut + fbr_tax:,.0f}** in fees. That's about {((bank_cut+fbr_tax)/gross_pkr)*100:.1f}% of your hard work!")
+st.caption("Created with ❤️ by Zoha (z-fintech-dev) | Project #1 of 18")
