@@ -37,18 +37,21 @@ final_take_home = gross_pkr - bank_cut - fbr_tax
 st.divider()
 st.subheader("📝 Your Digital Receipt")
 
-col1, col2 = st.columns(2)
-with col1:
-    st.write(f"**Gross Amount:**")
-    st.write(f"Bank/App Loss ({provider}):")
-    st.write(f"Government Tax (FBR):")
-    st.success(f"### **Net in Pocket:**")
+if gross_pkr > 0:
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write(f"**Gross Amount:**")
+        st.write(f"Bank/App Loss ({provider}):")
+        st.write(f"Government Tax (FBR):")
+        st.success(f"### **Net in Pocket:**")
 
-with col2:
-    st.write(f"Rs. {gross_pkr:,.0f}")
-    st.write(f"- Rs. {bank_cut:,.0f}")
-    st.write(f"- Rs. {fbr_tax:,.0f}")
-    st.success(f"### **Rs. {final_take_home:,.0f}**")
+    with col2:
+        st.write(f"Rs. {gross_pkr:,.0f}")
+        st.write(f"- Rs. {bank_cut:,.0f}")
+        st.write(f"- Rs. {fbr_tax:,.0f}")
+        st.success(f"### **Rs. {final_take_home:,.0f}**")
 
-st.warning(f"💡 You lost **Rs. {bank_cut + fbr_tax:,.0f}** in fees. That's about {((bank_cut+fbr_tax)/gross_pkr)*100:.1f}% of your hard work!")
-st.caption("Created with ❤️ by Zoha (z-fintech-dev) | Project #1 of 18")
+    st.warning(f"💡 You lost **Rs. {bank_cut + fbr_tax:,.0f}** in fees. That's about {((bank_cut+fbr_tax)/gross_pkr)*100:.1f}% of your hard work!")
+else:
+    st.info("Please enter an amount greater than 0 in the sidebar to see your breakdown.")
+    st.caption("Created with ❤️ by Zoha (z-fintech-dev) | Project #1 of 18")
