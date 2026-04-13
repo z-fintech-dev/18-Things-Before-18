@@ -3,7 +3,7 @@ import pandas as pd
 
 # --- CUSTOM STYLING ---
 st.markdown("""
-    <style>
+<style>
     .main {
         background-color: #0e1117;
     }
@@ -14,20 +14,17 @@ st.markdown("""
         border-radius: 10px;
         color: #ffffff;
     }
-    .stDataFrame {
-        border: 1px solid #374151;
-        border-radius: 10px;
-    }
-   </style>
-    """, unsafe_allow_html=True)
-# --- CURRENCY LOGIC UPDATE ---
-# Ensure PKR is the default and uses proper formatting
+</style>
+""", unsafe_allow_html=True)
+
+# --- CURRENCY LOGIC ---
 currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
+# This needs to be outside the 'if' block so it shows up immediately
 selected_currency = st.sidebar.selectbox("Select Currency", list(currency_options.keys()), index=0)
 symbol = currency_options[selected_currency]
 
 # 1. SETTINGS
-st.set_page_config(page_title="SpendWise AI", layout="wide")
+st.title("💰 SpendWise AI: Executive Financial Audit")st.set_page_config(page_title="SpendWise AI", layout="wide")
 st.title("💰 SpendWise AI: Executive Financial Audit")
 
 # 2. SIDEBAR UPLOADER
