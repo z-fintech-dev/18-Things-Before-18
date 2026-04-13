@@ -18,9 +18,8 @@ st.markdown("""
         border: 1px solid #374151;
         border-radius: 10px;
     }
-    </style>
+   </style>
     """, unsafe_allow_html=True)
-
 # --- CURRENCY LOGIC UPDATE ---
 # Ensure PKR is the default and uses proper formatting
 currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
