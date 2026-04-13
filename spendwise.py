@@ -1,22 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# --- CUSTOM STYLING ---
-st.markdown("""
-<style>
-    .main {
-        background-color: #0e1117;
-    }
-    div[data-testid="metric-container"] {
-        background-color: #1f2937;
-        border: 1px solid #374151;
-        padding: 15px;
-        border-radius: 10px;
-        color: #ffffff;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # --- CURRENCY LOGIC ---
 currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
 # This needs to be outside the 'if' block so it shows up immediately
