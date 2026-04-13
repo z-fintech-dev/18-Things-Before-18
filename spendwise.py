@@ -19,7 +19,7 @@ st.markdown("""
         border-radius: 10px;
     }
     </style>
-    """, unsafe_allow_input=True)
+    """, unsafe_allow_html=True)
 
 # --- CURRENCY LOGIC UPDATE ---
 # Ensure PKR is the default and uses proper formatting
