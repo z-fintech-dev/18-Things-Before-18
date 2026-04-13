@@ -7,7 +7,7 @@ st.title("💰 SpendWise AI: Executive Financial Audit")
 
 # 2. SIDEBAR UPLOADER
 st.sidebar.header("Data Input")
-uploaded_file = st.sidebar.file_uploader("Upload your transactions.csv", type="csv","txt")
+uploaded_file = st.sidebar.file_uploader("Upload your transactions.csv", type=["csv", "txt"])
 
 # 3. CURRENCY SELECTOR
 currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
