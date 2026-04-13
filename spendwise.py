@@ -1,11 +1,22 @@
 import streamlit as st
 import pandas as pd
+ 
+# 1. THIS MUST BE THE FIRST STREAMLIT COMMAND
+st.set_page_config(page_title="SpendWise AI", layout="wide")
 
-# --- CURRENCY LOGIC ---
-currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
-# This needs to be outside the 'if' block so it shows up immediately
-selected_currency = st.sidebar.selectbox("Select Currency", list(currency_options.keys()), index=0)
-symbol = currency_options[selected_currency]
+# 2. NOW DO THE STYLING
+st.markdown("""
+<style>
+    .main { background-color: #0e1117; }
+    div[data-testid="metric-container"] {
+        background-color: #1f2937;
+        border: 1px solid #374151;
+        padding: 15px;
+        border-radius: 10px;
+        color: #ffffff;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # 1. SETTINGS
 st.title("💰 SpendWise AI: Executive Financial Audit")st.set_page_config(page_title="SpendWise AI", layout="wide")
