@@ -1,6 +1,32 @@
 import streamlit as st
 import pandas as pd
 
+# --- CUSTOM STYLING ---
+st.markdown("""
+    <style>
+    .main {
+        background-color: #0e1117;
+    }
+    div[data-testid="metric-container"] {
+        background-color: #1f2937;
+        border: 1px solid #374151;
+        padding: 15px;
+        border-radius: 10px;
+        color: #ffffff;
+    }
+    .stDataFrame {
+        border: 1px solid #374151;
+        border-radius: 10px;
+    }
+    </style>
+    """, unsafe_allow_input=True)
+
+# --- CURRENCY LOGIC UPDATE ---
+# Ensure PKR is the default and uses proper formatting
+currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
+selected_currency = st.sidebar.selectbox("Select Currency", list(currency_options.keys()), index=0)
+symbol = currency_options[selected_currency]
+
 # 1. SETTINGS
 st.set_page_config(page_title="SpendWise AI", layout="wide")
 st.title("💰 SpendWise AI: Executive Financial Audit")
