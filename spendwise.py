@@ -7,7 +7,7 @@ st.title("💰 SpendWise AI: Executive Financial Audit")
 
 # 2. SIDEBAR UPLOADER
 st.sidebar.header("Data Input")
-uploaded_file = st.sidebar.file_uploader("Upload your transactions.csv", type="csv")
+uploaded_file = st.sidebar.file_uploader("Upload your transactions.csv", type="csv","txt")
 
 # 3. CURRENCY SELECTOR
 currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
@@ -35,6 +35,29 @@ if uploaded_file is not None:
 
     st.markdown("---")
 
+    st.markdown("---")
+    st.subheader("🚨 Financial Health Audit: Anomalous Spending")
+
+    # 1. Calculate the average of all POSITIVE expenses
+    expenses_only = df[df['Amount'] > 0]['Amount']
+    avg_expense = expenses_only.mean()
+
+    # 2. Define a 'Red Flag' threshold (e.g., 3x the average)
+    threshold = avg_expense * 3
+
+    # 3. Use that LAMBDA we talked about to tag transactions
+    df['Audit_Status'] = df['Amount'].apply(
+        lambda x: "🚩 RED FLAG: High Spend" if x > threshold else "✅ Normal"
+    )
+
+    # 4. Display only the Red Flags to the Executive
+    red_flags = df[df['Audit_Status'].str.contains("🚩")]
+    
+    if not red_flags.empty:
+        st.warning(f"Audit detected transactions exceeding the threshold of {symbol}{threshold:,.2f}")
+        st.dataframe(red_flags, use_container_width=True)
+    else:
+        st.success("No anomalous spending detected in this period.")
     # Show Data Table
     st.subheader("📊 Recent Transactions")
     st.dataframe(df, use_container_width=True)
