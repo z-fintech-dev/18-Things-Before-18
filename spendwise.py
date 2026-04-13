@@ -37,6 +37,23 @@ if uploaded_file is not None:
 
     st.markdown("---")
     st.subheader("🚨 Financial Health Audit: Anomalous Spending")
+    st.markdown("---")
+    st.subheader("📅 Financial Runway Predictor")
+
+    # 1. Calculate Daily Burn Rate (Total Expenses / number of days in the data)
+    num_days = (pd.to_datetime(df['Date']).max() - pd.to_datetime(df['Date']).min()).days + 1
+    daily_burn_rate = total_spent / num_days
+
+    if daily_burn_rate > 0:
+        days_left = net_balance / daily_burn_rate
+        
+        if days_left > 0:
+            st.info(f"Your average daily spend is **{symbol}{daily_burn_rate:,.2f}**.")
+            st.metric("Estimated Days of Runway", f"{int(days_left)} Days")
+        else:
+            st.error("⚠️ ALERT: Your net balance is zero or negative. Immediate budget adjustment required.")
+    else:
+        st.success("No expenses recorded yet. Your runway is infinite!")
 
     # 1. Calculate the average of all POSITIVE expenses
     expenses_only = df[df['Amount'] > 0]['Amount']
