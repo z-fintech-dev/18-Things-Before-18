@@ -11,11 +11,15 @@ currency_options = {"PKR": "Rs.", "USD": "$", "GBP": "£"}
 selected_currency = st.sidebar.selectbox("Select Currency", list(currency_options.keys()))
 symbol = currency_options[selected_currency]
 
-# 3. LOAD THE DATA
-try:
-    df = pd.read_csv('transactions.csv')
-    # Clean the data: Make sure the computer treats 'Amount' as a number
-    df['Amount'] = pd.to_numeric(df['Amount'])
+# Instead of just loading a file, let's allow an upload
+uploaded_file = st.sidebar.file_uploader("Upload your transactions.csv", type="csv")
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    # ... move all your analysis logic inside this 'if' block
+else:
+    st.info("Please upload a CSV file to begin the audit.")
+    st.stop() # Stops the app until a file is provided
     
     # 4. DATA ANALYSIS (The "Fintech" Brain)
     total_spent = df[df['Amount'] > 0]['Amount'].sum()
