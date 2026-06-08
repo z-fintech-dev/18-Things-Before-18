@@ -19,7 +19,22 @@ st.markdown("""
         padding: 20px;
         border-radius: 10px;
         border-left: 5px solid #00ffcc;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        min-height: 180px;
+    }
+    .launch-link {
+        display: inline-block;
+        background-color: #00ffcc;
+        color: #0e1117 !important;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .launch-link:hover {
+        background-color: #00cc99;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -40,8 +55,8 @@ with col1:
         <h3>💰 TruePKR</h3>
         <p><b>Fintech Engine</b><br>A real-time currency exchange application designed to handle live API global market data fluctuations.</p>
     </div>
+    <a class="launch-link" href="https://18-things-before-18-thy7s9fmiyugxatw8clyk5.streamlit.app/" target="_blank">Launch TruePKR ↗️</a>
     """, unsafe_allow_html=True)
-    st.button("Launch TruePKR", key="truepkr_btn")
 
 with col2:
     st.markdown("""
@@ -49,8 +64,8 @@ with col2:
         <h3>🧠 SpendWise AI</h3>
         <p><b>Financial Auditor</b><br>An automated business expense tracker featuring runway prediction math and anomaly detection logic.</p>
     </div>
+    <a class="launch-link" href="https://18-things-before-18-zqbufspxfh4doricggmbph.streamlit.app/" target="_blank">Launch SpendWise AI ↗️</a>
     """, unsafe_allow_html=True)
-    st.button("Launch SpendWise AI", key="spendwise_btn")
 
 with col3:
     st.markdown("""
@@ -58,8 +73,8 @@ with col3:
         <h3>🩺 MediGuide AI</h3>
         <p><b>Healthcare Operations</b><br>An intelligent triage tool demonstrating advanced text orchestration and structured AI responses.</p>
     </div>
+    <a class="launch-link" href="https://mediguide-ai-triage-ekuxqrgu6tskhebz5lmdmu.streamlit.app/" target="_blank">Launch MediGuide AI ↗️</a>
     """, unsafe_allow_html=True)
-    st.button("Launch MediGuide AI", key="mediguide_btn")
 
 st.markdown("---")
 
