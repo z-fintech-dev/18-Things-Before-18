@@ -40,7 +40,7 @@ with col1:
         <h3>💰 TruePKR</h3>
         <p><b>Fintech Engine</b><br>A real-time currency exchange application designed to handle live API global market data fluctuations.</p>
     </div>
-    """, unsafe_view_html=True)
+    """, unsafe_allow_html=True)
     st.button("Launch TruePKR", key="truepkr_btn")
 
 with col2:
@@ -49,7 +49,7 @@ with col2:
         <h3>🧠 SpendWise AI</h3>
         <p><b>Financial Auditor</b><br>An automated business expense tracker featuring runway prediction math and anomaly detection logic.</p>
     </div>
-    """, unsafe_view_html=True)
+    """, unsafe_allow_html=True)
     st.button("Launch SpendWise AI", key="spendwise_btn")
 
 with col3:
@@ -58,7 +58,7 @@ with col3:
         <h3>🩺 MediGuide AI</h3>
         <p><b>Healthcare Operations</b><br>An intelligent triage tool demonstrating advanced text orchestration and structured AI responses.</p>
     </div>
-    """, unsafe_view_html=True)
+    """, unsafe_allow_html=True)
     st.button("Launch MediGuide AI", key="mediguide_btn")
 
 st.markdown("---")
