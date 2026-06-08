@@ -22,7 +22,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
     </style>
-""", unsafe_view_html=True)
+""", unsafe_allow_html=True)
 
 # 2. Hero Section
 st.title("🚀 Zoha | AI Fintech Engineer & Data Architect")
