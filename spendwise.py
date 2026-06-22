@@ -31,9 +31,14 @@ st.title("💰 SpendWise AI: Executive Financial Audit")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-    df['Amount'] = pd.to_numeric(df['Amount'])
     
-    # Basic Calculations
+    # Clean up column names to avoid matching issues due to hidden spaces
+    df.columns = df.columns.str.strip()
+    
+    # Ensure Amount is numeric
+    df['Amount'] = pd.to_numeric(df['Amount'], errors='coerce').fillna(0)
+    
+    # Standardizing calculation (Assuming Positive = Expense for your current logic template)
     total_spent = df[df['Amount'] > 0]['Amount'].sum()
     total_income = abs(df[df['Amount'] < 0]['Amount'].sum())
     net_balance = total_income - total_spent
@@ -46,15 +51,32 @@ if uploaded_file is not None:
 
     st.markdown("---")
 
-    # Runway Predictor Section
+    # Runway Predictor Section (With safety fallbacks for Date/Timestamp)
     st.subheader("📅 Financial Runway Predictor")
-    num_days = (pd.to_datetime(df['Date']).max() - pd.to_datetime(df['Date']).min()).days + 1
+    
+    # Find whatever date column exists
+    date_col = None
+    for col in ['Date', 'Timestamp', 'date', 'timestamp']:
+        if col in df.columns:
+            date_col = col
+            break
+            
+    if date_col:
+        try:
+            num_days = (pd.to_datetime(df[date_col]).max() - pd.to_datetime(df[date_col]).min()).days + 1
+            if num_days <= 0: num_days = 1
+        except:
+            num_days = 30 # Default fallback if dates fail to parse
+    else:
+        num_days = 30 # Default fallback if no date column exists at all
+        st.caption("ℹ️ No date column found. Defaulting calculations over a 30-day timeline simulation.")
+
     daily_burn_rate = total_spent / num_days
 
     if daily_burn_rate > 0:
         days_left = net_balance / daily_burn_rate
         if days_left > 0:
-            st.info(f"Your average daily spend is **{symbol}{daily_burn_rate:,.2f}**.")
+            st.info(f"Your average daily spend is **{symbol}{daily_burn_rate:,.2f}** (Calculated over {num_days} days).")
             st.metric("Estimated Days of Runway", f"{int(days_left)} Days")
         else:
             st.error("⚠️ ALERT: Your net balance is zero or negative. Immediate budget adjustment required.")
